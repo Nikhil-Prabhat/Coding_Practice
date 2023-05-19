@@ -1,3 +1,7 @@
+/*
+* Youtube Link to Understand the Logic : https://www.youtube.com/watch?v=GEqSg0Otq4Y
+*/
+
 class Solution {
     
     public String smallestNumber(String pattern) {
