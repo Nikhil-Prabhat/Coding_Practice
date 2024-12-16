@@ -22,7 +22,7 @@ public int[] getFinalState(int[] nums, int k, int multiplier) {
         return finalArray;
     }
 	
-// Accepted Solution
+//  Accepted Solution
 class Solution {
     public int[] getFinalState(int[] nums, int k, int multiplier) {
         while (k-- > 0) {
