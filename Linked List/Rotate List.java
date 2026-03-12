@@ -1,9 +1,13 @@
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        while (k-- > 0 && Objects.nonNull(head)) {
-            head = singleRightRotate(head);
-        }
+        if(Objects.nonNull(head)) {
+            int sizeOfListNode = findLengthOfLinkedList(head);
+            int revisedRotationCount = k >= sizeOfListNode ? k % sizeOfListNode : k;
 
+            while (revisedRotationCount-- > 0) {
+                head = singleRightRotate(head);
+            }
+        }
         return head;
     }
 
@@ -35,5 +39,15 @@ class Solution {
         }
 
         resultNode.next = new ListNode(listNode.val);
+    }
+
+    private int findLengthOfLinkedList(ListNode listNode) {
+        int size = 0;
+        while (Objects.nonNull(listNode)) {
+            size++;
+            listNode = listNode.next;
+        }
+
+        return size;
     }
 }
