@@ -26,3 +26,29 @@ class Solution {
 
     private Predicate<Integer> checkIfLevelIsEven = level -> level % 2 == 0;
 }
+
+// Accepted Solution
+class Solution {
+    record Pair(int maxResultWithRoot, int maxResultWithoutRoot) {};
+
+    public int rob(TreeNode root) {
+        Pair pair = iterateTree(root);
+        return Math.max(pair.maxResultWithRoot(), pair.maxResultWithoutRoot());
+    }
+
+    private Pair iterateTree(TreeNode treeNode) {
+        if (Objects.isNull(treeNode)) {
+            return new Pair(0, 0);
+        }
+
+        Pair leftPair = iterateTree(treeNode.left);
+        Pair rightPair = iterateTree(treeNode.right);
+
+        int currentMaxResultWithRoot = treeNode.val + leftPair.maxResultWithoutRoot()
+                + rightPair.maxResultWithoutRoot();
+        int currentMaxResultWithoutRoot = Math.max(leftPair.maxResultWithRoot(), leftPair.maxResultWithoutRoot())
+                + Math.max(rightPair.maxResultWithRoot(), rightPair.maxResultWithoutRoot());
+
+        return new Pair(currentMaxResultWithRoot, currentMaxResultWithoutRoot);
+    }
+}
